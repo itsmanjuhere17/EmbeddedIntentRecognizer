@@ -19,6 +19,6 @@ int main(int argc, char** argv)
     }
     auto intent_prov = IntentProviderFactory::getIntentProvider(Constants::IntentProviders::Version::BASIC);
     intent_prov->parseInput(input_text);
-    intent_prov->showIntent();
+    std::cout<<intent_prov->getIntent();
     return 0;
 }

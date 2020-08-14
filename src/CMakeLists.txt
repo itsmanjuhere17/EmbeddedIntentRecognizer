@@ -19,4 +19,4 @@ set(SOURCES main.cpp
     includes/parsers/factparser.h)
 
 add_executable(${BINARY}_bin ${SOURCES})
-add_library(${BINARY}_lib SHARED ${SOURCES})
+add_library(${BINARY}_lib STATIC ${SOURCES})
