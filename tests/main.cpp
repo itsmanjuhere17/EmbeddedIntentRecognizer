@@ -19,7 +19,8 @@ public:
     }
 };
 
-TEST_F(TestIntentRecognizer, TestPositive_WeatherIntentCaseSensitive) {
+//Test cases for Weather intent.
+TEST_F(TestIntentRecognizer, TestPositive_WeatherIntentCaseSmall) {
     std::string input = "What is the Weather like today?";
     if(m_intentProvider) {
         m_intentProvider->parseInput(input);
@@ -27,7 +28,7 @@ TEST_F(TestIntentRecognizer, TestPositive_WeatherIntentCaseSensitive) {
     }
 }
 
-TEST_F(TestIntentRecognizer, TestPositive_WeatherIntentCaseInsensitive) {
+TEST_F(TestIntentRecognizer, TestPositive_WeatherIntentCaseCaptial) {
     std::string input = "WHAT IS THE WEATHER LIKE TODAY?";
     if(m_intentProvider) {
         m_intentProvider->parseInput(input);
@@ -83,7 +84,8 @@ TEST_F(TestIntentRecognizer, TestNegative_WeatherIntentNoInput) {
     }
 }
 
-TEST_F(TestIntentRecognizer, TestPositive_WeatherCityIntentCaseSensitive) {
+//Test cases for Weather City Intent
+TEST_F(TestIntentRecognizer, TestPositive_WeatherCityIntentCaseSmall) {
     std::string input = "What is the Weather like today in Paris?";
     if(m_intentProvider) {
         m_intentProvider->parseInput(input);
@@ -91,7 +93,7 @@ TEST_F(TestIntentRecognizer, TestPositive_WeatherCityIntentCaseSensitive) {
     }
 }
 
-TEST_F(TestIntentRecognizer, TestPositive_WeatherCityIntentCaseInsensitive) {
+TEST_F(TestIntentRecognizer, TestPositive_WeatherCityIntentCaseCapital) {
     std::string input = "WHAT IS THE WEATHER LIKE TODAY IN PARIS";
     if(m_intentProvider) {
         m_intentProvider->parseInput(input);
@@ -152,6 +154,88 @@ TEST_F(TestIntentRecognizer, TestNegative_WeatherCityIntentNoCityInput) {
     if(m_intentProvider) {
         m_intentProvider->parseInput(input);
         EXPECT_EQ(Constants::Intents::weather_intent , m_intentProvider->getIntent());
+    }
+}
+
+//Test cases for Calendar Intent.
+
+TEST_F(TestIntentRecognizer, TestPositive_CalendarIntentCaseSmall) {
+    std::string input = "Am I free at 10:30AM tomorrow?";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::calendar_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_CalendarIntentCaseCapital) {
+    std::string input = "AM I FREE TOMORROW?";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::calendar_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_CalendarIntentMixedCaseInput) {
+    std::string input = "aM I frEe toMorroW?";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::calendar_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_CalendarIntentOneWordMatch) {
+    std::string input = "jdjdjdd free jjjr2ri2j";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::calendar_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_CalendarIntentOneWordInput) {
+    std::string input = "free";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::calendar_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_CalendarIntentKeywordInMiddle) {
+    std::string input = "amiFreeat10:30tomorrow?";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::calendar_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_CalendarIntentSynonym) {
+    std::string input = "Am I busy on next Friday at 1PM?";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::calendar_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_CalendarIntentSynonym1) {
+    std::string input = "Am I occupied tomorrow?";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::calendar_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestNegative_CalendarIntentRandomInput) {
+    std::string input = "lqejqwklej ihiowhihw jfjoepjfioejfioej";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::no_intent_found , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestNegative_CalendarIntentNoInput) {
+    std::string input = "";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::no_intent_found , m_intentProvider->getIntent());
     }
 }
 
