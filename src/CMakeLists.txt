@@ -17,4 +17,5 @@ set(SOURCES main.cpp
     includes/parsers/weatherparser.h
     includes/parsers/calendarparser.h
     includes/parsers/factparser.h)
+
 add_executable(${BINARY}_bin ${SOURCES})
