@@ -2,8 +2,9 @@
 #include<memory>
 using namespace std;
 
-class IfIntentProvider;
-#include "intentprovider.h"
+#include "constants.h"
+#include "IfIntentProvider.h"
+#include "intentproviderfactory.h"
 int main(int argc, char** argv)
 {
     if(argc < 2) {
@@ -16,7 +17,7 @@ int main(int argc, char** argv)
         input_text += argv[index];
         input_text += " ";
     }
-    unique_ptr<IfIntentProvider> intent_prov = std::make_unique<IntentProvider>();
+    auto intent_prov = IntentProviderFactory::getIntentProvider(Constants::IntentProviders::Version::BASIC);
     intent_prov->parseInput(input_text);
     intent_prov->showIntent();
     return 0;

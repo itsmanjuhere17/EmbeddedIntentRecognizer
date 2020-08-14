@@ -1,13 +1,33 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#include<string>
 namespace Constants {
-    namespace Intents {
-        const char* no_intent_found     = "Intent not found.";
-        const char* weather_intent      = "Get Weather";
-        const char* weather_intent_city = "Get Weather City";
-        const char* calendar_intent     = "Check Calendar";
-        const char* fact_event          = "Get Fact";
+
+    namespace IntentProviders{
+        enum Version {
+            BASIC,
+            ADVANCED
+        };
     }
+
+    namespace Intents {
+        const std::string no_intent_found     = "Intent Not Found.";
+        const std::string weather_intent      = "Get Weather";
+        const std::string weather_intent_city = "Get Weather City";
+        const std::string calendar_intent     = "Check Calendar";
+        const std::string fact_event          = "Get Fact";
+    }
+
+    namespace Parsers {
+        enum Parser {
+            NONE,
+            WEATHER,
+            CALENDAR,
+            FACT
+        };
+    }
+
 }
-#endif // CONSTANTS_H
+
+#endif

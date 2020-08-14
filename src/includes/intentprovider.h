@@ -1,6 +1,8 @@
 #ifndef INTENTPROVIDER_H
 #define INTENTPROVIDER_H
 
+#include<memory>
+
 #include "IfIntentProvider.h"
 class IntentProvider:public IfIntentProvider
 {
