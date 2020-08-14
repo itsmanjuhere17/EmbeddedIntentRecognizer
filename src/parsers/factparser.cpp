@@ -3,5 +3,5 @@
 
 void FactParser::parseInput(const std::string &input)
 {
-    m_intent = Constants::Intents::fact_event;
+    m_intent = Constants::Intents::fact_intent;
 }

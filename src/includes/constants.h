@@ -16,7 +16,7 @@ namespace Constants {
         const std::string weather_intent      = "Get Weather";
         const std::string weather_intent_city = "Get Weather City";
         const std::string calendar_intent     = "Check Calendar";
-        const std::string fact_event          = "Get Fact";
+        const std::string fact_intent          = "Get Fact";
     }
 
     namespace Parsers {

@@ -239,6 +239,71 @@ TEST_F(TestIntentRecognizer, TestNegative_CalendarIntentNoInput) {
     }
 }
 
+//Test cases for Fact Intent.
+TEST_F(TestIntentRecognizer, TestPositive_FactIntentCaseSmall) {
+    std::string input = "Tell me some interesting fact.";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::fact_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_FactIntentCaseCapital) {
+    std::string input = "TELL ME SOME INTERESTING FACT.";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::fact_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_FactIntentMixedCaseInput) {
+    std::string input = "teLL mE SoME IntEREStiNg fAcT";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::fact_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_FactIntentOneWordMatch) {
+    std::string input = "jdjdjdd fact jjjr2ri2j";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::fact_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_FactIntentOneWordInput) {
+    std::string input = "fact";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::fact_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestPositive_FactIntentKeywordInMiddle) {
+    std::string input = "tellmenicefactaboutanything";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::fact_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestNegative_FactIntentRandomInput) {
+    std::string input = "lqejqwklej ihiowhihw jfjoepjfioejfioej";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::no_intent_found , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestNegative_FactIntentNoInput) {
+    std::string input = "";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::no_intent_found , m_intentProvider->getIntent());
+    }
+}
+
 int main() {
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();
