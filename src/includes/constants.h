@@ -12,11 +12,11 @@ namespace Constants {
     }
 
     namespace Intents {
-        const std::string no_intent_found     = "Intent Not Found.";
+        const std::string no_intent_found     = "Intent Not Found";
         const std::string weather_intent      = "Get Weather";
         const std::string weather_intent_city = "Get Weather City";
         const std::string calendar_intent     = "Check Calendar";
-        const std::string fact_intent          = "Get Fact";
+        const std::string fact_intent         = "Get Fact";
     }
 
     namespace Parsers {

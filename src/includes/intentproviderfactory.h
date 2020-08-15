@@ -6,6 +6,8 @@ class IfIntentProvider;
 class IntentProviderFactory
 {
 public:
+    IntentProviderFactory() = delete;
+    ~IntentProviderFactory() = delete;
     static std::unique_ptr<IfIntentProvider> getIntentProvider(const Constants::IntentProviders::Version&);
 };
 

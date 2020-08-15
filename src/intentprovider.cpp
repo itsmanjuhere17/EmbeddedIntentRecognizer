@@ -11,24 +11,34 @@ void IntentProvider::parseInput(std::string input_text)
     std::transform(input_text.begin(), input_text.end(), input_text.begin(), [](char ch){
         return std::tolower(ch);
     });
-    std::unique_ptr<IFParser> parser{nullptr};
+    Constants::Parsers::Parser enParser;
     //Regex Match to input.
     if(regex_match(input_text, std::regex("(.*)(weather)(.*)"))) {
-        parser = ParserFactory::getParser(Constants::Parsers::Parser::WEATHER);
+        enParser = Constants::Parsers::Parser::WEATHER;
     }
     else if(regex_match(input_text, std::regex("(.*)(free|busy|occupied)(.*)"))) {
-        parser = ParserFactory::getParser(Constants::Parsers::Parser::CALENDAR);
+        enParser = Constants::Parsers::Parser::CALENDAR;
     }
     else if(regex_match(input_text, std::regex("(.*)(fact[s]*|truth[s]*)(.*)"))) {
-        parser = ParserFactory::getParser(Constants::Parsers::Parser::FACT);
+        enParser = Constants::Parsers::Parser::FACT;
+    }
+    else {
+        enParser = Constants::Parsers::Parser::NONE;
+    }
+    if(enParser != Constants::Parsers::Parser::NONE) {
+        auto parser = ParserFactory::getParser(enParser);
+        if(parser) {
+            parser->parseInput(input_text);
+            m_recognizedIntent = parser->get_intent();
+        }
+        else {
+            m_recognizedIntent = Constants::Intents::no_intent_found;
+        }
     }
     else {
         std::cout<<"No Matching Intent found"<<std::endl;
         m_recognizedIntent = Constants::Intents::no_intent_found;
     }
-    if(parser) {
-        parser->parseInput(input_text);
-        m_recognizedIntent = parser->get_intent();
-    }
+
 }
 
