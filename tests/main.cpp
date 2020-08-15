@@ -3,9 +3,9 @@
 
 #include "gtest/gtest.h"
 
-#include "includes/IfIntentProvider.h"
-#include "includes/intentproviderfactory.h"
-#include "includes/constants.h"
+#include "IfIntentProvider.h"
+#include "intentproviderfactory.h"
+#include "constants.h"
 
 class TestIntentRecognizer : public ::testing::Test {
 public:
