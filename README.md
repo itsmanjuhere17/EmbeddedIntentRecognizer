@@ -3,8 +3,8 @@ Embedded Intent Recognizer is a command line tool that recognizes the intent of 
 At the moment, the tool can recognize only Weather, Calendar and Fact intents. The tool can be extended to identify other intents as well. 
 
 # Dependencies
-a) Cmake verison minimum 3.5
-b) Latest g++ compiler that supports C++ 17 langauge features.
+1) Cmake verison (minimum 3.5)
+2) Latest g++ compiler that supports C++ 17 langauge features.
 
 # Building the project.
 1) Clone the repo.
