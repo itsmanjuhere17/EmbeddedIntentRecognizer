@@ -19,6 +19,9 @@ public:
     }
 };
 
+TEST_F(TestIntentRecognizer, TestFactoryMethod) {
+    assert(m_intentProvider != nullptr);
+}
 //Test cases for Weather intent.
 TEST_F(TestIntentRecognizer, TestPositive_WeatherIntentCaseSmall) {
     std::string input = "What is the Weather like today?";
