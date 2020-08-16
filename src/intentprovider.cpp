@@ -36,7 +36,6 @@ void IntentProvider::parseInput(std::string input_text)
         }
     }
     else {
-        std::cout<<"No Matching Intent found"<<std::endl;
         m_recognizedIntent = Constants::Intents::no_intent_found;
     }
 
