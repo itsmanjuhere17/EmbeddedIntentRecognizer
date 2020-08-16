@@ -16,10 +16,10 @@ void IntentProvider::parseInput(std::string input_text)
     if(regex_match(input_text, std::regex("(.*)(weather)(.*)"))) {
         enParser = Constants::Parsers::Parser::WEATHER;
     }
-    else if(regex_match(input_text, std::regex("(.*)(free|busy|occupied)(.*)"))) {
+    else if(regex_match(input_text, std::regex("(.*)(free|busy|occupied|(have)?(.*)(appointment[s]?|meeting[s]?))(.*)"))) {
         enParser = Constants::Parsers::Parser::CALENDAR;
     }
-    else if(regex_match(input_text, std::regex("(.*)(fact[s]*|truth[s]*)(.*)"))) {
+    else if(regex_match(input_text, std::regex("(.*)(fact[s]?|truth[s]?)(.*)"))) {
         enParser = Constants::Parsers::Parser::FACT;
     }
     else {
