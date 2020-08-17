@@ -13,7 +13,7 @@ void IntentProvider::parseInput(std::string input_text)
     });
     Constants::Parsers::Parser enParser;
     //Regex Match to input.
-    if(regex_match(input_text, std::regex("(.*)(weather)(.*)"))) {
+    if(regex_match(input_text, std::regex("(.*)(weather|rain|sunny|(carry)?(.*)(umbrella))(.*)"))) {
         enParser = Constants::Parsers::Parser::WEATHER;
     }
     else if(regex_match(input_text, std::regex("(.*)(free|busy|occupied|(have)?(.*)(appointment[s]?|meeting[s]?))(.*)"))) {

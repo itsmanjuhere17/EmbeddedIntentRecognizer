@@ -307,6 +307,40 @@ TEST_F(TestIntentRecognizer, TestNegative_FactIntentNoInput) {
     }
 }
 
+//Advanced test cases.
+
+TEST_F(TestIntentRecognizer, TestAdvancedPositive_WeatherCityIntentSmallCase) {
+    std::string input = "will it rain tomorrow in paris?";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::weather_intent_city , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestAdvancedPositive_WeatherCityIntentBigCase) {
+    std::string input = "WILL IT RAIN TOMORROW IN PARIS?";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::weather_intent_city , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestAdvancedPositive_WeatherIntent) {
+    std::string input = "do i need to carry an umbrella tomorrow?";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::weather_intent , m_intentProvider->getIntent());
+    }
+}
+
+TEST_F(TestIntentRecognizer, TestAdvancedPositive_CalendarIntent) {
+    std::string input = "do i have any meetings tomrrow?";
+    if(m_intentProvider) {
+        m_intentProvider->parseInput(input);
+        EXPECT_EQ(Constants::Intents::calendar_intent , m_intentProvider->getIntent());
+    }
+}
+
 int main() {
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();
